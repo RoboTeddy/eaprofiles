@@ -1,0 +1,83 @@
+/* CSS declarations go here */
+
+body {
+  padding: 1em;
+  color: #555;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.padded {
+  padding: 0 1em;
+}
+
+form.profile {
+  padding: 1em 1em;
+}
+
+form fieldset {
+  max-width: 60em;
+  background-color: #e9e9e9;
+}
+
+form .photo-container {
+  position: relative;
+  cursor: pointer;
+}
+
+form .photo-container .photo-instructions {
+  position: absolute;
+  font-size: 80%;
+  left: 1em;
+  top: 1em;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.25em;
+}
+
+form .photo-container img {
+  border-radius: 3px;
+}
+
+form button[type=submit] {
+  margin-top: 1em;
+}
+
+/* prevent our css messing with accounts-ui */
+#login-buttons * {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+} 
+#login-dropdown-list a {
+  padding: 0;
+}
+
+.list .profile {
+  border-top: 1px solid #e5e5e5;
+  padding: 1em;
+}
+
+.list .profile .name {
+  font-weight:bold;
+}
+
+.list .profile img {
+  border-radius: 3px;
+}
+
+form {
+  padding: 1em 4em;
+}
+
+form textarea {
+  height: 8em;
+}
+
+.doing-now {
+  font-size: 80%;
+}

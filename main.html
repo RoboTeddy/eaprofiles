@@ -1,0 +1,114 @@
+<head>
+  <title>Effective Altruism Profiles</title>
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name="main">
+  <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <a class="pure-menu-heading">EA Profiles</a>
+
+    <ul>
+      {{#unless currentUser}}<li>Create your profile:</li>{{/unless}}
+      <li>{{loginButtons}}</li>
+    </ul>
+  </div>
+
+  {{#if currentUser}}
+    {{> form}}
+  {{/if}}
+
+  {{> list}}
+</template>
+
+<template name="list">
+  <div class="list">
+    {{#each users}}
+      <div class="profile">
+        <div class="pure-g-r">
+          <div class="pure-u-1-5 padded" style="text-align:right">
+            <div class="name" style="margin-bottom:0.5em">{{profile.name}}</div>
+            <img src="{{profile.inkBlob.url}}/convert?w=250&amp;height=250" />
+            <div><a href="mailto:{{profile.email}}">{{profile.email}}</a></div>
+          </div>
+          <div class="pure-u-2-5 padded">
+            {{#if profile.doingNow}}
+              <span class="name">{{profile.doingNow}}</span>
+            {{/if}}
+
+            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised</div>
+          </div>
+          <div class="pure-u-1-5 padded">
+            <span class="name">Areas of Interest</span>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ev</p>
+          </div>
+          <div class="pure-u-1-5 padded">
+            <span class="name">Areas of Expertise</span>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ev</p>
+          </div>
+
+        </div>
+        <!--
+        <div>Skype: <a href="skype:{{profile.skype}}?chat&amp;topic=Effective%20Altruism]">{{profile.skype}}</a></div>
+        -->
+        <div style="clear:both"></div>
+      </div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="form">
+  <form class="pure-form pure-form-stacked profile">
+    <fieldset>
+
+      <div class="pure-g-r">
+        <div class="pure-u-1-4 padded">
+
+          <label for="name">Name</label>
+          <input id="name" class="pure-input-1" type="text" value="{{profile.name}}" placeholder="Name">
+
+          <label for="email">Email Address</label>
+          <input id="email" class="pure-input-1" type="text" value="{{email}}" placeholder="Email Address">
+
+          <!--
+          <label for="skype">Skype</label>
+          <input id="skype" class="pure-input-1" type="text" value="{{profile.skype}}" placeholder="Skype">
+          -->
+
+          <label for="skype">Photo</label>
+          <div class="photo-container js-pick-photo">
+            <img src="{{photoUrl profile 250 250}}">
+            <span class="photo-instructions">Pick Photo</span>
+          </div>
+        </div>
+
+        <div class="pure-u-3-4 padded">
+          <label for="doingNow">What Are You Doing?</label>
+          <input id="doingNow" type="text" class="pure-input-1" value="{{profile.doingNow}}" placeholder="e.g., I'm earning to give at a financial institution">
+
+          <label for="bio">Bio</label>
+          <textarea id="bio" type="text" class="pure-input-1" value="{{profile.bio}}"></textarea>
+
+          <div class="pure-g-r">
+            <div class="pure-u-1-2" style="padding-right:1em">
+              <label for="areasOfInterest">Areas Of Interest</label>
+              <textarea id="areasOfInterest" type="text" class="pure-input-1" value="{{profile.areasOfInterest}}"></textarea>
+            </div>
+            <div class="pure-u-1-2">
+              <label for="areasOfExpertise">Areas Of Expertise</label>
+              <textarea id="areasOfExpertise" type="text" class="pure-input-1" value="{{profile.areasOfExpertise}}"></textarea>
+            </div>
+          </div>
+
+          <label for="doingNow">Do you want current and prospective EAs to reach out to you? Encourage them!</label>
+          <input id="doingNow" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., Please email me if you want to discuss your plans! I mean it!">
+
+          <button type="submit" class="pure-button pure-button-primary js-update-profile">Submit Profile</button>
+          <button type="submit" class="pure-button js-deactivate-profile">Deactivate Profile</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</template>

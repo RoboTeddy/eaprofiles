@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "filepicker": {}
+    },
+    "packages": {
+      "filepicker": {
+        "git": "https://github.com/Filepicker/meteor.git",
+        "tag": "v0.3.0",
+        "commit": "dcb6f3779e5fc105520ba06b0392e3a79c73a7e6"
+      }
+    }
+  }
+}
