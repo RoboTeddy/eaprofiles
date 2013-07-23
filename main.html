@@ -38,15 +38,15 @@
               <span class="name">{{profile.doingNow}}</span>
             {{/if}}
 
-            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised</div>
+            <div>{{profile.bio}}</div>
           </div>
           <div class="pure-u-1-5 padded">
             <span class="name">Areas of Interest</span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ev</p>
+            <p>{{profile.areasOfInterest}}</p>
           </div>
           <div class="pure-u-1-5 padded">
             <span class="name">Areas of Expertise</span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ev</p>
+            <p>{{profile.areasOfExpertise}}</p>
           </div>
 
         </div>
@@ -89,21 +89,22 @@
           <input id="doingNow" type="text" class="pure-input-1" value="{{profile.doingNow}}" placeholder="e.g., I'm earning to give at a financial institution">
 
           <label for="bio">Bio</label>
-          <textarea id="bio" type="text" class="pure-input-1" value="{{profile.bio}}"></textarea>
+          <textarea id="bio" type="text" class="pure-input-1" value=""> {{profile.bio}}</textarea>
 
           <div class="pure-g-r">
             <div class="pure-u-1-2" style="padding-right:1em">
               <label for="areasOfInterest">Areas Of Interest</label>
-              <textarea id="areasOfInterest" type="text" class="pure-input-1" value="{{profile.areasOfInterest}}"></textarea>
+              <textarea id="areasOfInterest" type="text" class="pure-input-1" > {{profile.areasOfInterest}}</textarea>
             </div>
             <div class="pure-u-1-2">
               <label for="areasOfExpertise">Areas Of Expertise</label>
-              <textarea id="areasOfExpertise" type="text" class="pure-input-1" value="{{profile.areasOfExpertise}}"></textarea>
+              <textarea id="areasOfExpertise" type="text" class="pure-input-1""> {{profile.areasOfExpertise}}</textarea>
+
             </div>
           </div>
 
-          <label for="doingNow">Do you want current and prospective EAs to reach out to you? Encourage them!</label>
-          <input id="doingNow" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., Please email me if you want to discuss your plans! I mean it!">
+          <label for="contactEncouragment">Do you want current and prospective EAs to reach out to you? Encourage them!</label>
+          <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., Please email me if you want to discuss your plans! I mean it!">
 
           <button type="submit" class="pure-button pure-button-primary js-update-profile">Submit Profile</button>
           <button type="submit" class="pure-button js-deactivate-profile">Deactivate Profile</button>

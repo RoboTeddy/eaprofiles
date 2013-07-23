@@ -37,7 +37,11 @@ if Meteor.isClient
           "profile.email": $('#email').val()
           "profile.skype": $('#skype').val()
           "profile.doingNow": $('#doingNow').val()
+          "profile.bio": $('#bio').val()
+          "profile.areasOfInterest": $('#areasOfInterest').val()
+          "profile.areasOfExpertise": $('#areasOfExpertise').val()
           "profile.isActive": true
+          "profile.contactEncouragement": $('#contactEncouragement').val()
       )
 
     'click .js-deactivate-profile': (e) ->
