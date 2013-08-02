@@ -81,3 +81,9 @@ form textarea {
 .doing-now {
   font-size: 80%;
 }
+
+.map_canvas {
+  margin-top: 10px;
+  width: 100%;
+  height: 180px;
+}
