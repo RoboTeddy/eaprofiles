@@ -12,6 +12,23 @@ Template.form.photoUrl = (profile, width, height) ->
   return url + "/convert?width=#{width}&height=#{height}" if url
   return '/no-photo.png'
 
+FORM_FIELDS = { # fieldname: inputid
+  "name"
+  "email"
+  "skype"
+  "doingNow"
+  "bio"
+  "areasOfInterest"
+  "areasOfExpertise"
+  "contact"
+  "contactEncouragement"
+  "host"
+  "hostEncouragement"
+  "location"
+  "lat"
+  "lng"
+}
+
 Template.form.events
   'click .js-pick-photo': (e) ->
     filepicker.setKey settings.filepicker.key
@@ -23,19 +40,13 @@ Template.form.events
 
   'click .js-update-profile': (e) ->
     e.preventDefault()
-    Meteor.users.update(
-      Meteor.userId(),
-      $set:
-        "profile.name": $('#name').val()
-        "profile.email": $('#email').val()
-        "profile.skype": $('#skype').val()
-        "profile.doingNow": $('#doingNow').val()
-        "profile.bio": $('#bio').val()
-        "profile.areasOfInterest": $('#areasOfInterest').val()
-        "profile.areasOfExpertise": $('#areasOfExpertise').val()
-        "profile.isActive": true
-        "profile.contactEncouragement": $('#contactEncouragement').val()
-    )
+    set = {}
+    for fieldname of FORM_FIELDS
+      inputid = FORM_FIELDS[fieldname]
+      set["profile.#{fieldname}"] = $("##{inputid}").val()
+    set["profile.isActive"] = true
+    console.log set
+    Meteor.users.update(Meteor.userId(), { $set: set })
 
   'click .js-deactivate-profile': (e) ->
     e.preventDefault()
@@ -44,5 +55,6 @@ Template.form.events
 Template.form.rendered = ->
   $(@find("#location")).geocomplete
     map: ".map_canvas"
+    details: "#geocomplete_info"
     types: ["geocode", "establishment"]
   .trigger("geocode")

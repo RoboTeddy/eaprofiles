@@ -87,3 +87,7 @@ form textarea {
   width: 100%;
   height: 180px;
 }
+
+#geocomplete_info {
+  display: none;
+}

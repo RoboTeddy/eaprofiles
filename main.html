@@ -85,9 +85,16 @@
           </div>
 
           <label for="location">Location</label>
-          <input id="location" type="text" class="pure-input-1" placeholder="Type in an address" value="Oxford, UK" />
+          <input id="location" type="text" class="pure-input-1" placeholder="Type in an address" value="{{profile.location}}" />
 
+          {{#constant}}
           <div class="map_canvas"></div>
+          {{/constant}}
+
+          <fieldset id="geocomplete_info">
+            <input name="lat" type="text" value="">
+            <input name="lng" type="text" value="">
+          </fieldset>
         </div>
 
         <div class="pure-u-3-4 padded">
@@ -95,27 +102,27 @@
           <input id="doingNow" type="text" class="pure-input-1" value="{{profile.doingNow}}" placeholder="e.g., I'm earning to give at a financial institution">
 
           <label for="bio">Bio</label>
-          <textarea id="bio" type="text" class="pure-input-1" value=""> {{profile.bio}}</textarea>
+          <textarea id="bio" type="text" class="pure-input-1" value="">{{profile.bio}}</textarea>
 
           <div class="pure-g-r">
             <div class="pure-u-1-2" style="padding-right:1em">
               <label for="areasOfInterest">Areas Of Interest</label>
-              <textarea id="areasOfInterest" type="text" class="pure-input-1" > {{profile.areasOfInterest}}</textarea>
+              <textarea id="areasOfInterest" type="text" class="pure-input-1" >{{profile.areasOfInterest}}</textarea>
             </div>
             <div class="pure-u-1-2">
               <label for="areasOfExpertise">Areas Of Expertise</label>
-              <textarea id="areasOfExpertise" type="text" class="pure-input-1"> {{profile.areasOfExpertise}}</textarea>
+              <textarea id="areasOfExpertise" type="text" class="pure-input-1">{{profile.areasOfExpertise}}</textarea>
 
             </div>
           </div>
 
-          <label for="contact"><input type="checkbox" id="contact" /> Current and prospective EAs may reach out to me</label>
+          <label for="contact"><input type="checkbox" id="contact" {{#if profile.contact}}checked{{/if}} /> Current and prospective EAs may reach out to me</label>
           <label for="contactEncouragment">Contact details/encouragement</label>
           <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., email works best / PLEASE CONTACT ME ALL THE TIME WITH ALL THE THINGS ">
 
-          <label for="contact"><input type="checkbox" id="host" /> I can host travellers</label>
+          <label for="host"><input type="checkbox" id="host" {{#if profile.host}}checked{{/if}} /> I can host travellers</label>
           <label for="hostEncouragment">Host details/encouragement</label>
-          <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., I only have a futon / I will throw massive parties in your honor ">
+          <input id="hostEncouragement" type="text" class="pure-input-1" value="{{profile.hostEncouragement}}" placeholder="e.g., I only have a futon / I will throw massive parties in your honor ">
 
           <button type="submit" class="pure-button pure-button-primary js-update-profile">Save Profile</button>
           <button type="submit" class="pure-button js-deactivate-profile">Deactivate Profile</button>
