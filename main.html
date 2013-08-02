@@ -17,11 +17,10 @@
     </ul>
   </div>
 
-  {{#if currentUser}}
-    {{> form}}
-  {{/if}}
-
-  {{> list}}
+  {{#isolate}}
+  {{renderPage}}
+  {{/isolate}}
+  
 </template>
 
 <template name="list">
@@ -92,8 +91,8 @@
           {{/constant}}
 
           <fieldset id="geocomplete_info">
-            <input name="lat" type="text" value="">
-            <input name="lng" type="text" value="">
+            <input name="lat" id="lat" type="text" value="">
+            <input name="lng" id="lng" type="text" value="">
           </fieldset>
         </div>
 
@@ -130,4 +129,8 @@
       </div>
     </fieldset>
   </form>
+</template>
+
+<template name="map">
+  <div id="bigmap_canvas"/>
 </template>

@@ -91,3 +91,8 @@ form textarea {
 #geocomplete_info {
   display: none;
 }
+
+#bigmap_canvas {
+  width: 100%;
+  height: 600px;
+}

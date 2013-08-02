@@ -1,5 +1,6 @@
 {
   "packages": {
-    "filepicker": {}
+    "filepicker": {},
+    "router": {}
   }
 }
