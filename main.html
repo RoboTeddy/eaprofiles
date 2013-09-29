@@ -9,9 +9,12 @@
 
 <template name="main">
   <div class="pure-menu pure-menu-open pure-menu-horizontal">
-    <a class="pure-menu-heading">EA Profiles</a>
+    <a class="pure-menu-heading"  href="{{listPath}}">EA Profiles</a>
 
     <ul>
+      <li><a href="{{listPath}}">Main</a></li>
+      <li><a href="{{mapPath}}">Map</a></li>
+      {{#if currentUser}}<li><a href="{{formPath}}">Edit Profile</a></li>{{/if}}
       {{#unless currentUser}}<li>Create your profile:</li>{{/unless}}
       <li>{{loginButtons}}</li>
     </ul>
