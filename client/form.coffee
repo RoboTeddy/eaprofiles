@@ -6,11 +6,7 @@ Template.form.profile = -> Meteor.user().profile
 Template.form.email = ->
   Meteor.user()?.profile?.email or _.first(Meteor.user().emails)?.address
 
-Template.form.photoUrl = (profile, width, height) ->
-  console.log(profile, width, height)
-  url = profile?.inkBlob?.url
-  return url + "/convert?width=#{width}&height=#{height}" if url
-  return '/no-photo.png'
+Template.form.photoUrl = window.fns.getPhotoURL
 
 FORM_FIELDS = { # fieldname: inputid
   "name"
