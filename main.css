@@ -123,3 +123,13 @@ form textarea {
   word-wrap: break-word;
   max-width: 60em;
 }
+
+.active-profile a {
+  color: #069;
+  text-decoration: none;
+}
+
+.active-profile a:hover, .active-profile a:visited {
+  color: #069;
+  text-decoration: underline;
+}
