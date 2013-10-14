@@ -118,11 +118,11 @@
             </div>
           </div>
 
-          <label for="contact"><input type="checkbox" id="contact" {{#if profile.contact}}checked{{/if}} /> Current and prospective EAs may reach out to me</label>
+          <label for="canContact"><input type="checkbox" id="canContact" {{#if profile.canContact}}checked{{/if}} /> Current and prospective EAs may reach out to me</label>
           <label for="contactEncouragment">Contact details/encouragement</label>
-          <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., email works best / PLEASE CONTACT ME ALL THE TIME WITH ALL THE THINGS ">
+          <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., email works best / Happy to talk about X, Y, Z">
 
-          <label for="host"><input type="checkbox" id="host" {{#if profile.host}}checked{{/if}} /> I can host travellers</label>
+          <label for="canHost"><input type="checkbox" id="canHost" {{#if profile.canHost}}checked{{/if}} /> I can host travelers</label>
           <label for="hostEncouragment">Host details/encouragement</label>
           <input id="hostEncouragement" type="text" class="pure-input-1" value="{{profile.hostEncouragement}}" placeholder="e.g., I only have a futon / I will throw massive parties in your honor ">
 

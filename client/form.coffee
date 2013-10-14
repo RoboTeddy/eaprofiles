@@ -8,7 +8,7 @@ Template.form.email = ->
 
 Template.form.photoUrl = window.fns.getPhotoURL
 
-FORM_FIELDS = { # fieldname: inputid
+FORM_FIELDS = { # fieldName: inputId
   "name"
   "email"
   "skype"
@@ -16,9 +16,9 @@ FORM_FIELDS = { # fieldname: inputid
   "bio"
   "areasOfInterest"
   "areasOfExpertise"
-  "contact"
+  "canContact"
   "contactEncouragement"
-  "host"
+  "canHost"
   "hostEncouragement"
   "location"
   "lat"
@@ -37,12 +37,17 @@ Template.form.events
   'click .js-update-profile': (e) ->
     e.preventDefault()
     set = {}
-    for fieldname of FORM_FIELDS
-      inputid = FORM_FIELDS[fieldname]
-      set["profile.#{fieldname}"] = $("##{inputid}").val()
+
+    getTypedValue = (input) ->
+      $input = $(input)
+      if $input.is('[type=checkbox]') then $input.is(':checked') else
+        $input.val()
+
+    for fieldName of FORM_FIELDS
+      inputId = FORM_FIELDS[fieldName]
+      set["profile.#{fieldName}"] = getTypedValue($("##{inputId}"))
     set["profile.isActive"] = true
-    console.log set
-    Meteor.users.update(Meteor.userId(), { $set: set })
+    Meteor.users.update(Meteor.userId(), {$set: set})
 
   'click .js-deactivate-profile': (e) ->
     e.preventDefault()
