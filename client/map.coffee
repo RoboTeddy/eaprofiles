@@ -8,7 +8,6 @@ Template.map.rendered = ->
     {lat, lng} = user.profile
     lat = parseFloat(lat)
     lng = parseFloat(lng)
-    console.log user, lat, lng
     return if isNaN(lat) || isNaN(lng)
     marker = new google.maps.Marker
       title: user.profile.name
@@ -16,7 +15,7 @@ Template.map.rendered = ->
     marker.setMap(map)
 
     info = new google.maps.InfoWindow
-      content: user.profile.name
+      content: """<a href="/profile/#{user._id}">#{user.profile.name}</a>"""
     
     google.maps.event.addListener marker, 'click', =>
       info.open(map, marker)

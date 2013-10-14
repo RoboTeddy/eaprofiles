@@ -6,12 +6,11 @@ Template.form.profile = -> Meteor.user().profile
 Template.form.email = ->
   Meteor.user()?.profile?.email or _.first(Meteor.user().emails)?.address
 
-Template.form.photoUrl = window.fns.getPhotoURL
+Template.form.getPhotoURL = window.fns.getPhotoURL
 
 FORM_FIELDS = { # fieldName: inputId
   "name"
   "email"
-  "skype"
   "doingNow"
   "bio"
   "areasOfInterest"
@@ -48,10 +47,12 @@ Template.form.events
       set["profile.#{fieldName}"] = getTypedValue($("##{inputId}"))
     set["profile.isActive"] = true
     Meteor.users.update(Meteor.userId(), {$set: set})
+    Meteor.Router.to('profile', Meteor.userId())
 
   'click .js-deactivate-profile': (e) ->
     e.preventDefault()
     Meteor.users.update Meteor.userId(), $set: {"profile.isActive": false}
+    Meteor.Router.to('list')
 
 Template.form.rendered = ->
   $(@find("#location")).geocomplete

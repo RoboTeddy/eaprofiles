@@ -9,10 +9,10 @@
 
 <template name="main">
   <div class="pure-menu pure-menu-open pure-menu-horizontal">
-    <a class="pure-menu-heading"  href="{{listPath}}">EA Profiles</a>
+    <a class="pure-menu-heading" href="{{listPath}}">EA Profiles</a>
 
     <ul>
-      <li><a href="{{listPath}}">Main</a></li>
+      <li><a href="{{listPath}}">List</a></li>
       <li><a href="{{mapPath}}">Map</a></li>
       {{#if currentUser}}<li><a href="{{formPath}}">Edit Profile</a></li>{{/if}}
       {{#unless currentUser}}<li>Create your profile:</li>{{/unless}}
@@ -27,40 +27,77 @@
 </template>
 
 <template name="list">
-  <div class="list">
-    {{#each users}}
-      <div class="profile">
-        <div class="pure-g-r">
-          <div class="pure-u-1-5 padded" style="text-align:right">
-            <div class="name" style="margin-bottom:0.5em">{{profile.name}}</div>
-            <img src="{{getPhotoURL profile 250 250}}" />
-            <div><a href="mailto:{{profile.email}}">{{profile.email}}</a></div>
-          </div>
-          <div class="pure-u-2-5 padded">
-            {{#if profile.doingNow}}
-              <span class="name">{{profile.doingNow}}</span>
-            {{/if}}
 
-            <div>{{profile.bio}}</div>
-          </div>
-          <div class="pure-u-1-5 padded">
-            <span class="name">Areas of Interest</span>
-            <p>{{profile.areasOfInterest}}</p>
-          </div>
-          <div class="pure-u-1-5 padded">
-            <span class="name">Areas of Expertise</span>
-            <p>{{profile.areasOfExpertise}}</p>
-          </div>
+  <div class="quote">
+    <p>Effective altruists (EAs) apply evidence and reason to working out the most effective ways to improve the world.</p>
+
+    <p>They consider all causes, and then act to bring about the greatest positive impact.</p>
+  </div>
+  <div class="list">
+    <div class="pure-g-r">
+      {{#each users}}
+        <div class="pure-u-1-3" style="padding: 2em">
+
+            <div class="profile" href="{{profilePath _id}}">
+              <img src="{{getPhotoURL profile 250 250}}"
+                   style="float:left; margin-right: 1em" />
+              <div style="font-weight: bold">{{profile.name}}</div>
+              {{profile.doingNow}}
+              <div style="clear:both"><div>
+            </a>
 
         </div>
-        <!--
-        <div>Skype: <a href="skype:{{profile.skype}}?chat&amp;topic=Effective%20Altruism]">{{profile.skype}}</a></div>
-        -->
-        <div style="clear:both"></div>
-      </div>
-    {{/each}}
+      {{/each}}
+    </div>
   </div>
 </template>
+
+
+<template name="profile">
+  <div class="active-profile">
+    <div class="pure-g-r">
+
+      <div class="pure-u-1-4 padded">
+        <img src="{{getPhotoURL profile 250 250}}" class="photo" />
+        <h1>{{profile.name}}</h1>
+        <p>{{profile.doingNow}}</p>
+        <div><a href="mailto:{{email}}">{{profile.email}}</a></div>
+
+        {{#if profile.canContact}}
+          <p>{{profile.contactEncouragement}}</p>
+        {{/if}}
+
+        {{#if profile.canHost}}
+          <p>{{profile.hostEncouragement}}</p>
+        {{/if}}
+      </div>
+
+      <div class="pure-u-3-4 padded">
+        {{#if profile.bio}}
+          <h2 style="margin-top:0">Bio</h2>
+          <p>{{profile.bio}}</p>
+        {{/if}}
+
+        <div class="pure-g-r">
+          <div class="pure-u-1-2">
+            {{#if profile.areasOfInterest}}
+              <h2>Areas Of Interest</h2>
+              {{profile.areasOfInterest}}
+            {{/if}}
+          </div>
+          <div class="pure-u-1-2">
+            {{#if profile.areasOfExpertise}}
+              <h2>Areas Of Expertise</h2>
+              {{profile.areasOfExpertise}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
+
 
 <template name="form">
   <form class="pure-form pure-form-stacked profile">
@@ -69,25 +106,20 @@
       <div class="pure-g-r">
         <div class="pure-u-1-4 padded">
 
-          <label for="name">Name</label>
+          <label for="name" class="required">Name</label>
           <input id="name" class="pure-input-1" type="text" value="{{profile.name}}" placeholder="Name">
 
-          <label for="email">Email Address</label>
+          <label for="email" class="required">Email Address</label>
           <input id="email" class="pure-input-1" type="text" value="{{email}}" placeholder="Email Address">
 
-          <!--
-          <label for="skype">Skype</label>
-          <input id="skype" class="pure-input-1" type="text" value="{{profile.skype}}" placeholder="Skype">
-          -->
-
-          <label for="skype">Photo</label>
+          <label>Photo</label>
           <div class="photo-container js-pick-photo">
-            <img src="{{photoUrl profile 250 250}}">
+            <img src="{{getPhotoURL profile 250 250}}">
             <span class="photo-instructions">Pick Photo</span>
           </div>
 
           <label for="location">Location</label>
-          <input id="location" type="text" class="pure-input-1" placeholder="Type in an address" value="{{profile.location}}" />
+          <input id="location" type="text" class="pure-input-1" placeholder="Type in an intersection" value="{{profile.location}}" />
 
           {{#constant}}
           <div class="map_canvas"></div>
@@ -100,7 +132,7 @@
         </div>
 
         <div class="pure-u-3-4 padded">
-          <label for="doingNow">What Are You Doing?</label>
+          <label for="doingNow" class="required">What Are You Doing?</label>
           <input id="doingNow" type="text" class="pure-input-1" value="{{profile.doingNow}}" placeholder="e.g., I'm earning to give at a financial institution">
 
           <label for="bio">Bio</label>
@@ -120,7 +152,7 @@
 
           <label for="canContact"><input type="checkbox" id="canContact" {{#if profile.canContact}}checked{{/if}} /> Current and prospective EAs may reach out to me</label>
           <label for="contactEncouragment">Contact details/encouragement</label>
-          <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., email works best / Happy to talk about X, Y, Z">
+          <input id="contactEncouragement" type="text" class="pure-input-1" value="{{profile.contactEncouragement}}" placeholder="e.g., email me to set up a skype call / Happy to talk about X, Y, Z">
 
           <label for="canHost"><input type="checkbox" id="canHost" {{#if profile.canHost}}checked{{/if}} /> I can host travelers</label>
           <label for="hostEncouragment">Host details/encouragement</label>
